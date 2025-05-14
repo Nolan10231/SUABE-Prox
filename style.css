@@ -1,0 +1,231 @@
+/* Global font override */
+* {
+    font-family: 'Funnel Display', 'Open Sans', sans-serif;
+}
+/* Ensure full-viewport coverage */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+/* Remove bevel from body and prevent body scrolling */
+body {
+    overflow: hidden;
+    background-color: #121212;
+}
+/* New container with fixed position and bevel */
+#container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px; /* margin between content and bevel */
+    border: 8px solid #4a4a4a; /* sleeker, slightly brighter bevel */
+    border-radius: 8px; /* slightly reduced for sleekness */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); /* enhanced shadow effect */
+    background-color: #121212;
+    overflow: auto;
+    box-sizing: border-box;
+}
+/* Open button: sleek dark design with light text */
+#openButton {
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+}
+/* File upload label: dark background with dashed border */
+#browseLabel {
+    display: inline-block;
+    background-color: #444;
+    color: #e0e0e0;
+    font-size: 16px;
+    border: 2px dashed #666;
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 420px;
+    box-sizing: border-box;
+}
+/* Error messages remain red for contrast */
+#fileError, #urlError {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+/* URL input: dark background with light text and subtle border */
+#urlInput {
+    display: inline-block;
+    font-size: 16px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 12px 20px;
+    width: 420px;
+    height: 45px;
+    box-sizing: border-box;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+#fileInput {
+    display: none;
+}
+/* Clear buttons: use a consistent dark style */
+.clearButton {
+    background-color: #555;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.inputContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+/* Favicon buttons and hover effects updated for dark mode */
+#faviconButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+}
+button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(211,211,211,0.3); /* changed from rgba(255,255,255,0.2) or black */
+}
+#faviconButtons button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+    transform: translateX(0);
+    opacity: 1;
+}
+#faviconButtons button.animate {
+    transform: translateX(-30px);
+    opacity: 0;
+}
+#faviconButtons button.animate.loaded {
+    transform: translateX(0);
+    opacity: 1;
+}
+/* Add bounce keyframes and class: a simple up-and-down animation */
+@keyframes bounce {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(0) translateY(-8px); } /* increased upward distance */
+    100% { transform: translateX(0) translateY(0); }
+}
+.bounce {
+    animation: bounce 0.325s ease forwards; /* duration reduced from 0.4s to 0.35s */
+}
+/* New dropdown styles */
+.favicon-dropdown {
+    position: absolute;
+    right: 100px;
+    top: 40px;
+    background: #121212;
+    border: 2px solid #4a4a4a;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    transform-origin: top right;
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+.favicon-dropdown.active {
+    transform: scale(1);
+    opacity: 1;
+}
+.dropdown-content {
+    transform: scale(0.75);
+    transform-origin: top right;
+    padding: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+/* Add style for Material icon */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'GRAD' 0, 'opsz' 24;
+    color: #fff;
+    font-size: 24px;
+}
+/* Fix favicon sizing in dropdown */
+.dropdown-content button {
+    width: 40px !important;
+    height: 40px !important;
+    margin: 4px !important;
+}
+.dropdown-content img {
+    width: 80% !important;
+    height: 80% !important;
+    object-fit: contain;
+    filter: invert(1) brightness(2); /* Whitescale all icons */
+}
+#toggleVisibility img {
+    filter: invert(1) brightness(2);
+}
+#topBar {
+    transition: top 0.3s ease !important;
+    transform: none !important;
+}
+#contentContainer {
+    transition: top 0.3s ease !important;
+    transform: none !important;
+}
+/* Update #showTopBarToggle styles */
+#showTopBarToggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10000;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+    pointer-events: none;
+    will-change: opacity, transform;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    display: none;
+}
+#showTopBarToggle span {
+    display: block;
+    transform: translateY(-1px); /* Optical alignment */
+    width: 100%;
+    text-align: center;
+}
+/* New attribute selector rule */
+#showTopBarToggle[hidden] {
+    display: none !important;
+}
+/* Add to new window's styles */
+#showTopBarToggle {
+    background: rgba(255, 255, 255, 0.15);
+    mix-blend-mode: difference;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+#showTopBarToggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
